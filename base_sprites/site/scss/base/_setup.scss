@@ -1,3 +1,5 @@
+//useful variables for mixins
+$ie_sprite: '.no-svg' !default; // add it in a conditional comment if needed
 $base_font_size: 16px !default;
 
 @import "base/mixins";
@@ -8,7 +10,6 @@ $base_font_size: 16px !default;
 // colors
 $main_color: #000;
 $brand_color: #ccc;
-
 
 // Break points for media queries, converted to rem in respond-to mixin. Remove calculateRem in respond-to mixin if you don't need it
 $break_small: 415px; //iphone 6+ 

@@ -64,9 +64,6 @@
   filter: alpha(opacity=$opacity-ie); //IE8
 }
 
-/* breakpoints
-* see http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
-*/
 
 /* breakpoints
 * see http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
@@ -122,9 +119,7 @@
 	@return $attr;
 }
 
-
-
-// IE Sprite Mixin for when rotation is used
+// IE Sprite Mixin
 // Added: spriteMap option
 // Removed: extend
 @mixin ie-sprite($spriteMap, $icon, $type: all) {
