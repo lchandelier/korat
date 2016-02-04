@@ -1,0 +1,183 @@
+/* useful conversion for breakpoint
+* see http://www.stubbornella.org/content/2013/07/01/easy-peasy-rem-conversion-with-sass/
+*/
+@function calculateRem($size) {
+  $remSize: $size / $base_font_size;
+  @return #{$remSize}rem;
+}
+
+/* rem/px management
+* use only if you need to support IE8
+* see http://hugogiraudel.com/2013/03/18/ultimate-rem-mixin/
+* example of use 
+* @include rem(font-size, 1.6rem);
+* @include rem(padding, 20px 10px);
+* will output:
+*  font-size: 16px;  
+*  font-size: 1.6rem;
+*  padding: 20px 10px; 
+*  padding: 2rem 1rem;
+*/
+
+@function parseInt($n) { // 2 
+  @return $n / ($n * 0 + 1);
+}
+
+@mixin rem($property, $values) {
+  $px : (); // 3
+  $rem: (); // 3 
+
+  @each $value in $values { // 4 
+
+    @if $value == 0 or $value == auto { // 5 
+      $px : append($px , $value);
+      $rem: append($rem, $value);
+    }
+
+    @else {
+      $unit: unit($value);    //6
+      $val: parseInt($value); // 6
+
+      @if $unit == "px" {  // 7
+        $px : append($px,  $value);
+        $rem: append($rem, ($val / 10 + rem));
+      }
+
+      @if $unit == "rem" { // 7
+        $px : append($px,  ($val * 10 + px));
+        $rem: append($rem, $value);
+      }
+    }
+  }
+
+  @if $px == $rem {     // 8
+    #{$property}: $px;  // 9
+  } @else {
+    #{$property}: $px;  // 9
+    #{$property}: $rem; // 9
+  }
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+/* breakpoints
+* see http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
+*/
+
+/* breakpoints
+* see http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
+*/
+
+@mixin respond-to($media) {
+	// mobile max 415
+	@if $media == mobile {
+		@media screen and (max-width: calculateRem(($break_small)-1) ) { @content; }
+	}
+	// 416 to 768
+	@else if $media == portrait {
+		@media screen and (min-width: calculateRem($break_small) ) and (max-width: calculateRem(($break_medium)-1) ) { @content; }
+	}
+	// 769 to 959
+	@else if $media == landscape {
+		@media screen and (min-width: calculateRem($break_medium) ) and (max-width: calculateRem(($break_large)-1) ) { @content; }
+	}
+	// 960 to 1279
+	@else if $media == large {
+		@media screen and (min-width: calculateRem($break_large) ) and (max-width: calculateRem(($break_wide)-1) ) { @content; }
+	}
+	// 1280
+	@else if $media == wide {
+		@media screen and (min-width: calculateRem($break_wide) ) { @content; }
+	}
+
+	@else if $media == mobile_to_large {
+		@media screen and (max-width: calculateRem(($break_large)-1) ) { @content; }
+	}
+}
+
+/* multiple sprites management 
+* see https://www.liquidlight.co.uk/blog/article/creating-svg-sprites-using-gulp-and-sass/
+*/
+
+// Gets an attribute from the sass map
+// Added: spriteMap option
+@function sprite-attr($spriteMap, $icon, $attr) {
+	$icon: map-get($spriteMap, $icon);
+	@return map-get($icon, $attr);
+}
+
+// Added: spriteMap option
+@function icon-attr($spriteMap, $icon) {
+	$attr: (
+		width: sprite-attr($spriteMap, $icon, width),
+		height: sprite-attr($spriteMap, $icon, height),
+		x: sprite-attr($spriteMap, $icon, backgroundX),
+		y: sprite-attr($spriteMap, $icon, backgroundY)
+	);
+
+	@return $attr;
+}
+
+
+
+// IE Sprite Mixin for when rotation is used
+// Added: spriteMap option
+// Removed: extend
+@mixin ie-sprite($spriteMap, $icon, $type: all) {
+	
+	$sprite: map-get($spriteMap, sprite);
+	$iconMap: icon-attr($spriteMap, $icon);
+	
+	@if $ie_sprite {
+		#{$ie_sprite} & {
+			@if $type == all {
+				// Shares the PNG background
+				background-image: url(map-get($sprite, pngPath));
+			}
+			// Outputs dimensions of icon
+			@if $type == all or $type == size {
+				width: map-get($iconMap, width);
+				height: map-get($iconMap, height);
+			}
+			// Outputs background position
+			@if $type == all or $type == bg {
+				background-position: (map-get($iconMap, x)) (map-get($iconMap, y));
+			}
+		}
+	}
+}
+
+// For use with the gulp sprite plugin
+// Added: spriteMap option
+// Removed: extend
+@mixin sprite($spriteMap, $icon, $type: all) {
+	$sprite: map-get($spriteMap, sprite);
+	
+	@if $type == all {
+		// Shares the backgrounds
+		display: inline-block;
+		background-image: url(map-get($sprite, svgPath));
+		background-size: map-get($sprite, width) map-get($sprite, height);
+	}
+
+	$iconMap: icon-attr($spriteMap, $icon);
+
+	// Outputs dimensions in em
+	@if $type == all or $type == size {
+		width: map-get($iconMap, width) + 1;
+		height: map-get($iconMap, height) + 1;
+	}
+
+	// Outputs background position in em
+	@if $type == all or $type == bg {
+		background-position: map-get($iconMap, x) map-get($iconMap, y);
+	}
+
+	// Add ie fallback
+	@include ie-sprite($spriteMap, $icon, $type);
+
+}

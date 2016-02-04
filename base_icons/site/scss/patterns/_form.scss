@@ -1,0 +1,27 @@
+input, select {
+    -webkit-appearance: none; 
+}
+
+input {
+    &[type='text'] {
+
+    }
+    ::-webkit-input-placeholder { // WebKit browsers
+        color: #B2B2B2;
+        font-family: conduit_bold, arial, sans-serif;
+    }
+    :-moz-placeholder { // Mozilla Firefox 4 to 18
+        color: #B2B2B2;
+        opacity:  1;
+        font-family: conduit_bold, arial, sans-serif;
+    }
+    ::-moz-placeholder { // Mozilla Firefox 19+
+        color: #B2B2B2;
+        opacity:  1;
+        font-family: conduit_bold, arial, sans-serif;
+    }
+    :-ms-input-placeholder { // Internet Explorer 10+
+        color: #B2B2B2;
+        font-family: conduit_bold, arial, sans-serif;
+    }
+}

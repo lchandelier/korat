@@ -1,0 +1,17 @@
+$base_font_size: 16px !default;
+
+@import "base/mixins";
+@import "compass/css3/transition";
+@import "compass/css3/transform";
+@import "compass/css3/images";
+
+// colors
+$main_color: #000;
+$brand_color: #ccc;
+
+
+// Break points for media queries, converted to rem in respond-to mixin. Remove calculateRem in respond-to mixin if you don't need it
+$break_small: 415px; //iphone 6+ 
+$break_medium: 768px;
+$break_large: 960px;
+$break_wide: 1280px;
