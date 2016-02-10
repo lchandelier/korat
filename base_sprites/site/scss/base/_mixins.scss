@@ -96,7 +96,8 @@
 	}
 }
 
-/* multiple sprites management 
+/*
+* multiple sprites management 
 * see https://www.liquidlight.co.uk/blog/article/creating-svg-sprites-using-gulp-and-sass/
 */
 
@@ -133,14 +134,14 @@
 				// Shares the PNG background
 				background-image: url(map-get($sprite, pngPath));
 			}
-			// Outputs dimensions of icon
+			// Outputs dimensions of icon in rem
 			@if $type == all or $type == size {
-				width: map-get($iconMap, width);
-				height: map-get($iconMap, height);
+				width: calculateRem(map-get($iconMap, width));
+				height: calculateRem(map-get($iconMap, height));
 			}
-			// Outputs background position
+			// Outputs background position in rem
 			@if $type == all or $type == bg {
-				background-position: (map-get($iconMap, x)) (map-get($iconMap, y));
+				background-position: calculateRem(map-get($iconMap, x)) calculateRem(map-get($iconMap, y));
 			}
 		}
 	}
@@ -156,20 +157,20 @@
 		// Shares the backgrounds
 		display: inline-block;
 		background-image: url(map-get($sprite, svgPath));
-		background-size: map-get($sprite, width) map-get($sprite, height);
+		background-size: calculateRem(map-get($sprite, width)) calculateRem(map-get($sprite, height));
 	}
 
 	$iconMap: icon-attr($spriteMap, $icon);
 
-	// Outputs dimensions in em
+	// Outputs dimensions in rem
 	@if $type == all or $type == size {
-		width: map-get($iconMap, width) + 1;
-		height: map-get($iconMap, height) + 1;
+		width: calculateRem(map-get($iconMap, width) + 1);
+		height: calculateRem(map-get($iconMap, height) + 1);
 	}
 
-	// Outputs background position in em
+	// Outputs background position in rem
 	@if $type == all or $type == bg {
-		background-position: map-get($iconMap, x) map-get($iconMap, y);
+		background-position: calculateRem(map-get($iconMap, x)) calculateRem(map-get($iconMap, y));
 	}
 
 	// Add ie fallback
