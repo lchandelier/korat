@@ -1,1 +1,1 @@
-npm install -D gulp  gulp-shell browser-sync gulp-compass gulp-minify-css gulp-sourcemaps gulp-cache gulp-filter gulp-imagemin gulp-concat merge-stream gulp-minify-css gulp-notify gulp-rename gulp-util gulp-uglify gulp-zip gulp-html-extend gulp-svg2png imagemin-svgo gulp-svg-spritesheet
+npm install -D gulp  gulp-shell browser-sync gulp-compass gulp-minify-css gulp-sourcemaps gulp-cache gulp-filter@3.0.0 gulp-imagemin gulp-concat merge-stream gulp-minify-css gulp-notify gulp-rename gulp-util gulp-uglify gulp-zip gulp-html-extend gulp-svg2png imagemin-svgo gulp-svg-spritesheet
