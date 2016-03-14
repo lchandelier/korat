@@ -11,8 +11,8 @@ $base_font_size: 16px !default;
 $main_color: #000;
 $brand_color: #ccc;
 
-// Break points for media queries, converted to rem in respond-to mixin. Remove calculateRem in respond-to mixin if you don't need it
-$break_small: 415px; //iphone 6+ 
-$break_medium: 768px;
-$break_large: 960px;
-$break_wide: 1280px;
+// Break points for media queries. Use px or rem according to compatibility needs
+$break_small: 41.5rem; //iphone 6+ 
+$break_medium: 76.8rem;
+$break_large: 960rem;
+$break_wide: 128rem;

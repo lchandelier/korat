@@ -82,7 +82,7 @@ gulp.task('compass', function () {
             .pipe(minifyCSS())
             .pipe(rename({suffix: '.min'}))
             .pipe(gulp.dest(assets.css))
-            .pipe(browsersync.reload({stream: true}))
+			.pipe(browsersync.reload({stream: true}))
             .pipe(notify({message: 'all.min.css generated'}));
 
     var print = gulp.src(assets.scss + 'print.scss')
@@ -114,7 +114,7 @@ gulp.task('scripts', function () {
             .pipe(uglify())
             .pipe(sourcemaps.write('/'))
             .pipe(gulp.dest(assets.js))
-            .pipe(browsersync.reload({stream: true}))
+			.pipe(browsersync.reload({stream: true}))
             .pipe(notify({message: 'Scripts task complete'}));
 });
 
@@ -148,15 +148,15 @@ gulp.task('iconfont', function () {
 gulp.task('extend_common', function () {
     gulp.src([assets.inc + '/*.html'])
             .pipe(extender({annotations: false, verbose: false}))
-            .pipe(browsersync.reload({stream: true}))
-            .pipe(gulp.dest(assets.inc));
+            .pipe(gulp.dest(assets.inc))
+			.pipe(browsersync.reload({stream: true}));
 });
 
 gulp.task('extend', function () {
     gulp.src([assets.html + '/*.html'])
             .pipe(extender({annotations: false, verbose: false}))
-            .pipe(browsersync.reload({stream: true}))
-            .pipe(gulp.dest('.'));
+            .pipe(gulp.dest('.'))
+			.pipe(browsersync.reload({stream: true}));
 });
 
 /* get Fabricator and put it in styleguide folder */
@@ -198,9 +198,9 @@ gulp.task('watch', ['browser-sync'], function () {
     gulp.watch(assets.scss + '/**/*.scss', ['compass']);
     gulp.watch(assets.js + '/src/**/*.js', ['scripts']);
     gulp.watch(assets.img + '/**/*', ['images']);
+    gulp.watch(assets.sprites + '/**', ['sprites']);
     gulp.watch([assets.html + '/*.html', assets.inc + '/*.html'], ['extend_common', 'extend']);
 });
-
 
 // Default Task
 gulp.task('default', ['watch']);
