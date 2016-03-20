@@ -21,9 +21,9 @@ The gulpfile tasks allow you to:
 - Create a clean delivery zip of your project
 
 ## Installation
-1. Extract this package at the root of your project.
+1. Extract this package at the root of your project
 2. Install Gulp globally with `npm install -g gulp` command
-3. Copy/paste the command line included in **base\_package\_gulp\_install.txt**. It will install all required node modules
+3. Run the `npm install` command to install all required node modules
 4. Run `gulp` command. 
 5. Enjoy !
 
