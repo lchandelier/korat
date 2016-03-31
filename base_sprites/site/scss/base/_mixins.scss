@@ -76,16 +76,16 @@
     }
     // 416 to 768
     @else if $media == portrait {
-        @media screen and (min-width: $break_small) and (max-width: ($break_medium)-1 ) { @content; }
-    }
-    // 769 to 959
-    @else if $media == landscape {
-        @media screen and (min-width: $break_medium)  and (max-width: ($break_large)-1) { @content; }
-    }
-    // 960 to 1279
-    @else if $media == large {
-        @media screen and (min-width: $break_large) and (max-width: ($break_wide)-1 ) { @content; }
-    }
+	   @media screen and (min-width: $break_small) and (max-width: ($break_medium)-0.01 ) { @content; }
+	}
+	// 769 to 959
+	@else if $media == landscape {
+	   @media screen and (min-width: $break_medium)  and (max-width: ($break_large)-0.01) { @content; }
+	}
+	// 960 to 1279
+	@else if $media == large {
+	   @media screen and (min-width: $break_large) and (max-width: ($break_wide)-0.01 ) { @content; }
+	}
     // 1280
     @else if $media == wide {
         @media screen and (min-width: $break_wide)  { @content; }
