@@ -141,7 +141,7 @@ gulp.task('iconfont', function () {
                 // CSS templating, e.g.
                 console.log(glyphs, options);
             })
-            .pipe(gulp.dest(assets.css + '/fonts/'));
+            .pipe(gulp.dest(assets.css + '/font/'));
 });
 
 /* include html patterns in main files */
