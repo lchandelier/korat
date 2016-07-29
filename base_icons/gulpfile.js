@@ -85,7 +85,7 @@ gulp.task('compass', function () {
 			.pipe(browsersync.reload({stream: true}))
             .pipe(notify({message: 'all.min.css generated'}));
 
-    var print = gulp.src(assets.scss + 'print.scss')
+    var print = gulp.src(assets.scss + '/print.scss')
             .pipe(compass({
                 config_file: 'config.rb',
                 css: assets.css,
