@@ -3,7 +3,7 @@ var gulp = require('gulp'),
         shell = require('gulp-shell'),
         browsersync = require('browser-sync'),
         compass = require('gulp-compass'),
-        minifyCSS = require('gulp-minify-css'),
+        cleanCSS = require('gulp-clean-css'),
         sourcemaps = require('gulp-sourcemaps'),
         uglify = require('gulp-uglify'),
         imagemin = require('gulp-imagemin'),
@@ -86,7 +86,7 @@ gulp.task('compass', function () {
             .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest(assets.css))
             .pipe(notify({message: 'all.css generated'}))
-            .pipe(minifyCSS())
+            .pipe(cleanCSS())
             .pipe(rename({suffix: '.min'}))
             .pipe(gulp.dest(assets.css))
 			.pipe(browsersync.reload({stream: true}))
@@ -100,7 +100,7 @@ gulp.task('compass', function () {
             }))
             .pipe(gulp.dest(assets.css))
             .pipe(notify({message: 'print.css generated'}))
-            .pipe(minifyCSS())
+            .pipe(cleanCSS())
             .pipe(rename({suffix: '.min'}))
             .pipe(gulp.dest(assets.css))
             .pipe(notify({message: 'print.min.css generated'}));
