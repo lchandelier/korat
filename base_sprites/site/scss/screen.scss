@@ -36,6 +36,19 @@ body {
     @include rem(font-size, 1.4rem); // if IE8 fallback needed
 }
 
+.skip_links {
+    a {
+        &:focus, &:active, &:hover {
+            width: auto;
+            height: auto;
+            clip: auto;
+            overflow: visible;
+            z-index: 99;
+            color: #000; // a visible color according to your design
+        }
+    }
+}
+
 strong, b {
   font-weight: bold;
 }
