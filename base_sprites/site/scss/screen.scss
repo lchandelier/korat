@@ -25,6 +25,8 @@ html, body {
 html {
     font-size: 62.5%;
 	font-size: calc(1em * 0.625); // IE9-11 fix
+	-webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 
 body {
@@ -33,6 +35,8 @@ body {
     color: $main_color;
     font-family: arial, sans-serif;
     //font-size: 1.4rem; // If no need to support IE8. 1.4rem = 14px 
+	-webkit-backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
     @include rem(font-size, 1.4rem); // if IE8 fallback needed
 }
 

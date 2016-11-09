@@ -10,8 +10,8 @@ $base_font_size: 16px !default;
 $main_color: #000;
 $brand_color: #ccc;
 
-// Break points for media queries. Use px or rem according to compatibility needs
-$break_small: 25.94rem; //iphone 6+ 
-$break_medium: 48.06rem;
-$break_large: 60rem;
-$break_wide: 80rem;
+// Break points for media queries.
+$break_small: 540px;  
+$break_medium: 768px;
+$break_large: 1024px;
+$break_wide: 1280px;

@@ -1,4 +1,3 @@
-
 # Base Front-end
 This package contains a base structure to start a front-end project.
 
@@ -21,11 +20,12 @@ The gulpfile tasks allow you to:
 - Create a clean delivery zip of your project
 
 ## Installation
-1. Extract this package at the root of your project
-2. Install Gulp globally with `npm install -g gulp` command
-3. Run the `npm install` command to install all required node modules
-4. Run `gulp` command. 
-5. Enjoy !
+1. Install [Python 2.7] (https://www.python.org/downloads/release/python-2711/) and [compass] (http://compass-style.org/install/)
+2. Extract this package at the root of your project
+3. Install Gulp globally with `npm install -g gulp` command
+4. Run the `npm install` command to install all required node modules
+5. Run `gulp` command.
+6. Enjoy !
 
 ## Usage
 You have to edit the gulpfile to change the urlSync variable (L.51) and the other paths if you need to.
