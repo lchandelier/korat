@@ -1,5 +1,7 @@
-# Base Front-end
+# Korat
 This package contains a base structure to start a front-end project.
+
+It's called Korat because I'm a crazycat lady and a Korat cat is as small as this starterkit :)
 
 It uses Gulp and Sass.
 
