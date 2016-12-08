@@ -1,5 +1,6 @@
 /* plugins */
 var gulp = require('gulp'),
+        plumber = require('gulp-plumber');
         shell = require('gulp-shell'),
         browsersync = require('browser-sync'),
         compass = require('gulp-compass'),
@@ -14,7 +15,7 @@ var gulp = require('gulp'),
         gulpFilter = require('gulp-filter'),
         merge = require('merge-stream'),
         zip = require('gulp-zip'),
-        extender = require('gulp-html-extend'),
+        fileinclude = require('gulp-file-include'),
         svgo = require('imagemin-svgo'),
         svg2png = require('gulp-svg2png'),
         svgspritesheet = require('gulp-svg-spritesheet');
@@ -43,9 +44,7 @@ var assets = {
 };
 
 // folders in sprites directory. Allow you to create 3 different sprites
-var folder = new Array('global',
-        'home',
-        'mobile');
+var folder = new Array('global', 'home', 'mobile');
 
 // url of your project
 var urlSync = 'test.local';
@@ -71,6 +70,7 @@ gulp.task('compass', function () {
     var all = gulp.src([assets.scss + '/screen.scss',
         assets.scss + '/**/*.scss',
         assets.scss + '/*.scss'])
+            .pipe(plumber())
             .pipe(filterPrint)
             .pipe(compass({
                 config_file: 'config.rb',
@@ -93,6 +93,7 @@ gulp.task('compass', function () {
             .pipe(notify({message: 'all.min.css generated'}));
 
     var print = gulp.src(assets.scss + '/print.scss')
+            .pipe(plumber())
             .pipe(compass({
                 config_file: 'config.rb',
                 css: assets.css,
@@ -111,6 +112,7 @@ gulp.task('compass', function () {
 /* Concatenate & Minify JS */
 gulp.task('scripts', function () {
     return gulp.src([assets.js + '/src/lib/*.js', assets.js + '/src/*.js']) //manage order
+            .pipe(plumber())
             .pipe(sourcemaps.init())
             .pipe(concat('toolkit.js')) //for fabricator
             .pipe(gulp.dest(assets.styleguide_js))
@@ -128,6 +130,7 @@ gulp.task('scripts', function () {
 /* Optimise images */
 gulp.task('images', function () {
     return gulp.src(assets.img + '/**/*')
+            .pipe(plumber())
             .pipe(cache(imagemin({optimizationLevel: 3, progressive: true, interlaced: true})))
             .pipe(gulp.dest(assets.img));
 });
@@ -140,6 +143,7 @@ gulp.task('sprites', function () {
 
     folder.forEach(function (name) {
         gulp.src(assets.sprites + '/' + name + '/*.svg')
+                .pipe(plumber())
                 .pipe(svgspritesheet({
                     cssPathNoSvg: assets.css_img_path + '/sprite_' + name + '.png',
                     cssPathSvg: assets.css_img_path + '/sprite_' + name + '.svg',
@@ -165,18 +169,15 @@ gulp.task('sprites', function () {
 });
 
 /* include html patterns in main files */
-gulp.task('extend_common', function () {
-    gulp.src([assets.inc + '/*.html'])
-            .pipe(extender({annotations: false, verbose: false}))
-            .pipe(gulp.dest(assets.inc))
-			.pipe(browsersync.reload({stream: true}));
-});
-
-gulp.task('extend', function () {
-    gulp.src([assets.html + '/*.html'])
-            .pipe(extender({annotations: false, verbose: false}))
-            .pipe(gulp.dest('.'))
-			.pipe(browsersync.reload({stream: true}));
+gulp.task('fileinclude', function() {
+  gulp.src([assets.html + '/*.html'])
+    .pipe(plumber())
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: '@file'
+    }))
+    .pipe(gulp.dest('./'))
+	.pipe(browsersync.reload({stream: true}));
 });
 
 /* get Fabricator and put it in styleguide folder */
@@ -195,7 +196,7 @@ gulp.task('zipDelivery', function () {
         assets.css + '/**',
         assets.img + '/**',
         assets.js + '/**'], {base: "."})
-
+        .pipe(plumber())
         .pipe(zip('delivery' + date + '.zip'))
         .pipe(gulp.dest(paths.dist))
         .pipe(notify({message: 'Archive generated'}));
@@ -219,7 +220,7 @@ gulp.task('watch', ['browser-sync'], function () {
     gulp.watch(assets.js + '/src/**/*.js', ['scripts']);
     gulp.watch(assets.img + '/**/*', ['images']);
     gulp.watch(assets.sprites + '/**', ['sprites']);
-    gulp.watch([assets.html + '/*.html', assets.inc + '/*.html'], ['extend_common', 'extend']);
+    gulp.watch([assets.html + '/*.html', assets.inc + '/*.html'], ['fileinclude']);
 });
 
 

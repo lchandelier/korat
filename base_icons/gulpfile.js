@@ -1,5 +1,6 @@
 /* plugins */
 var gulp = require('gulp'),
+		plumber = require('gulp-plumber');
         shell = require('gulp-shell'),
         browsersync = require('browser-sync'),
         compass = require('gulp-compass'),
@@ -14,7 +15,7 @@ var gulp = require('gulp'),
         gulpFilter = require('gulp-filter'),
         merge = require('merge-stream'),
         zip = require('gulp-zip'),
-        extender = require('gulp-html-extend'),
+        fileinclude = require('gulp-file-include'),
         iconfont = require('gulp-iconfont');
 
 /* paths */
@@ -145,18 +146,15 @@ gulp.task('iconfont', function () {
 });
 
 /* include html patterns in main files */
-gulp.task('extend_common', function () {
-    gulp.src([assets.inc + '/*.html'])
-            .pipe(extender({annotations: false, verbose: false}))
-            .pipe(gulp.dest(assets.inc))
-			.pipe(browsersync.reload({stream: true}));
-});
-
-gulp.task('extend', function () {
-    gulp.src([assets.html + '/*.html'])
-            .pipe(extender({annotations: false, verbose: false}))
-            .pipe(gulp.dest('.'))
-			.pipe(browsersync.reload({stream: true}));
+gulp.task('fileinclude', function() {
+  gulp.src([assets.html + '/*.html'])
+    .pipe(plumber())
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: '@file'
+    }))
+    .pipe(gulp.dest('./'))
+	.pipe(browsersync.reload({stream: true}));
 });
 
 /* get Fabricator and put it in styleguide folder */
@@ -199,7 +197,7 @@ gulp.task('watch', ['browser-sync'], function () {
     gulp.watch(assets.js + '/src/**/*.js', ['scripts']);
     gulp.watch(assets.img + '/**/*', ['images']);
     gulp.watch(assets.sprites + '/**', ['sprites']);
-    gulp.watch([assets.html + '/*.html', assets.inc + '/*.html'], ['extend_common', 'extend']);
+    gulp.watch([assets.html + '/*.html', assets.inc + '/*.html'], ['fileinclude']);
 });
 
 // Default Task

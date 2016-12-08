@@ -79,6 +79,7 @@ Follow the doc for more informations [http://fbrctr.github.io/docs/] (http://fbr
 
 ### List of modules used ###
 
+- [https://www.npmjs.com/package/gulp-plumber](https://www.npmjs.com/package/gulp-plumber)
 - [https://www.npmjs.com/package/gulp-compass](https://www.npmjs.com/package/gulp-compass)
 - [https://www.npmjs.com/package/gulp-minify-css](https://www.npmjs.com/package/gulp-minify-css)
 - [https://www.npmjs.com/package/gulp-shell](https://www.npmjs.com/package/gulp-shell)
@@ -93,7 +94,7 @@ Follow the doc for more informations [http://fbrctr.github.io/docs/] (http://fbr
 - [https://www.npmjs.com/package/gulp-filter](https://www.npmjs.com/package/gulp-filter)
 - [https://www.npmjs.com/package/merge-stream](https://www.npmjs.com/package/merge-stream)
 - [https://www.npmjs.com/package/gulp-zip](https://www.npmjs.com/package/gulp-zip)
-- [https://www.npmjs.com/package/gulp-html-extend](https://www.npmjs.com/package/gulp-html-extend)
+- [https://www.npmjs.com/package/gulp-file-include](https://www.npmjs.com/package/gulp-file-include)
 - [https://www.npmjs.com/package/imagemin-svgo](https://www.npmjs.com/package/imagemin-svgo)
 - [https://www.npmjs.com/package/gulp-svg2png](https://www.npmjs.com/package/gulp-svg2png)
 - [https://www.npmjs.com/package/gulp-svg-spritesheet](https://www.npmjs.com/package/gulp-svg-spritesheet)
