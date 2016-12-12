@@ -40,7 +40,7 @@ A mix will be made with the included files and the result will be generated at t
 
 You can refer to **site/html/index.html** as an example
 
-More doc here: [https://github.com/FrankFang/gulp-html-extend](https://github.com/FrankFang/gulp-html-extend)
+More doc here: [https://www.npmjs.com/package/gulp-file-include](https://www.npmjs.com/package/gulp-file-include)
 
 ### Icon font
 
@@ -81,7 +81,7 @@ Follow the doc for more informations [http://fbrctr.github.io/docs/] (http://fbr
 
 - [https://www.npmjs.com/package/gulp-plumber](https://www.npmjs.com/package/gulp-plumber)
 - [https://www.npmjs.com/package/gulp-compass](https://www.npmjs.com/package/gulp-compass)
-- [https://www.npmjs.com/package/gulp-minify-css](https://www.npmjs.com/package/gulp-minify-css)
+- [https://www.npmjs.com/package/gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css)
 - [https://www.npmjs.com/package/gulp-shell](https://www.npmjs.com/package/gulp-shell)
 - [http://www.browsersync.io/docs/gulp/](http://www.browsersync.io/docs/gulp/)
 - [https://www.npmjs.com/package/gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
