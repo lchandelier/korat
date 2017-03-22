@@ -3,7 +3,7 @@ var gulp = require('gulp'),
 		plumber = require('gulp-plumber');
         shell = require('gulp-shell'),
         browsersync = require('browser-sync'),
-        compass = require('gulp-compass'),
+        sass = require('gulp-sass'),
         cleanCSS = require('gulp-clean-css'),
         sourcemaps = require('gulp-sourcemaps'),
         uglify = require('gulp-uglify'),
@@ -59,21 +59,17 @@ var urlSync = 'test.local';
  */
 
 /* remove print css from concatenation + Concatenate & Minify CSS */
-gulp.task('compass', function () {
+gulp.task('sass', function () {
     var filterPrint = gulpFilter(['*', '!print.scss']);
 
     var all = gulp.src([assets.scss + '/screen.scss',
         assets.scss + '/**/*.scss',
         assets.scss + '/*.scss'])
+            .pipe(plumber())
             .pipe(filterPrint)
-            .pipe(compass({
-                config_file: 'config.rb',
-                css: assets.css,
-                sass: assets.scss
-            }))
-
+            .pipe(sass().on('error', sass.logError))
             .pipe(sourcemaps.init())
-            .pipe(concat('toolkit.scss'))
+			.pipe(concat('toolkit.scss'))
             .pipe(gulp.dest(assets.styleguide_css))
             .pipe(notify({message: 'toolkit.scss generated'}))
             .pipe(rename('all.css'))
@@ -82,16 +78,15 @@ gulp.task('compass', function () {
             .pipe(notify({message: 'all.css generated'}))
             .pipe(cleanCSS())
             .pipe(rename({suffix: '.min'}))
+            .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest(assets.css))
-			.pipe(browsersync.reload({stream: true}))
-            .pipe(notify({message: 'all.min.css generated'}));
+            .pipe(browsersync.reload({stream: true}))
+            .pipe(notify({message: 'all.min.css generated'}))
+            .pipe(gulp.dest(assets.css));
 
     var print = gulp.src(assets.scss + '/print.scss')
-            .pipe(compass({
-                config_file: 'config.rb',
-                css: assets.css,
-                sass: assets.scss
-            }))
+            .pipe(plumber())
+            .pipe(sass().on('error', sass.logError))
             .pipe(gulp.dest(assets.css))
             .pipe(notify({message: 'print.css generated'}))
             .pipe(cleanCSS())
@@ -193,7 +188,7 @@ gulp.task('browsersync-reload', function () {
 
 // Watch Files For Changes
 gulp.task('watch', ['browser-sync'], function () {
-    gulp.watch(assets.scss + '/**/*.scss', ['compass']);
+    gulp.watch(assets.scss + '/**/*.scss', ['sass']);
     gulp.watch(assets.js + '/src/**/*.js', ['scripts']);
     gulp.watch(assets.img + '/**/*', ['images']);
     gulp.watch(assets.sprites + '/**', ['sprites']);
