@@ -3,9 +3,6 @@ $ie_sprite: '.no-svg' !default; // add it in a conditional comment if needed
 $base_font_size: 16px !default;
 
 @import "base/mixins";
-@import "compass/css3/transition";
-@import "compass/css3/transform";
-@import "compass/css3/images";
 
 // colors
 $main_color: #000;

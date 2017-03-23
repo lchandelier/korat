@@ -1,9 +1,9 @@
 /* plugins */
 var gulp = require('gulp'),
-        plumber = require('gulp-plumber');
+        plumber = require('gulp-plumber'),
         shell = require('gulp-shell'),
         browsersync = require('browser-sync'),
-        sass = require('gulp-sass');
+        sass = require('gulp-sass'),
         cleanCSS = require('gulp-clean-css'),
         sourcemaps = require('gulp-sourcemaps'),
         uglify = require('gulp-uglify'),

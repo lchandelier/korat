@@ -1,6 +1,6 @@
 /* plugins */
 var gulp = require('gulp'),
-		plumber = require('gulp-plumber');
+		plumber = require('gulp-plumber'),
         shell = require('gulp-shell'),
         browsersync = require('browser-sync'),
         sass = require('gulp-sass'),
