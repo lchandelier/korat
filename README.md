@@ -22,7 +22,7 @@ The gulpfile tasks allow you to:
 - Create a clean delivery zip of your project
 
 ## Installation
-1. Install [Python 2.7] (https://www.python.org/downloads/release/python-2711/) and [compass] (http://compass-style.org/install/)
+1. Install [Python 2.7](https://www.python.org/downloads/release/python-2711/)
 2. Extract this package at the root of your project
 3. Install Gulp globally with `npm install -g gulp` command
 4. Run the `npm install` command to install all required node modules
@@ -80,7 +80,7 @@ Follow the doc for more informations [http://fbrctr.github.io/docs/] (http://fbr
 ### List of modules used ###
 
 - [https://www.npmjs.com/package/gulp-plumber](https://www.npmjs.com/package/gulp-plumber)
-- [https://www.npmjs.com/package/gulp-compass](https://www.npmjs.com/package/gulp-compass)
+- [https://www.npmjs.com/package/gulp-sass](https://www.npmjs.com/package/gulp-sass)
 - [https://www.npmjs.com/package/gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css)
 - [https://www.npmjs.com/package/gulp-shell](https://www.npmjs.com/package/gulp-shell)
 - [http://www.browsersync.io/docs/gulp/](http://www.browsersync.io/docs/gulp/)
@@ -102,6 +102,23 @@ Follow the doc for more informations [http://fbrctr.github.io/docs/] (http://fbr
 
 ## History
 First version
+
+### 1.1.0 ###
+Add package.json
+
+### 1.1.1 ###
+Modules upgrade
+
+### 1.2.0 ###
+Update npm version to use nodejs version 6.9.1
+Remove rem breakpoints
+Better a11y on skip links and a11y_hidden class
+
+### Current version ###
+Better a11y on main regions (tabindex)
+Use gulp-sass instead of gulp-compass
+Remove config.rb file-include
+
 ## Credits
 Author: Mylène Chandelier
 ## License
