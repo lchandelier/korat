@@ -80,24 +80,24 @@ gulp.task('sass', function () {
             .pipe(rename('all.css'))
             .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest(assets.css))
-            .pipe(notify({message: 'all.css generated'}))
+            .pipe(notify({message: 'all.css generated', onLast: true}))
             .pipe(cleanCSS())
             .pipe(rename({suffix: '.min'}))
             .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest(assets.css))
             .pipe(browsersync.reload({stream: true}))
-            .pipe(notify({message: 'all.min.css generated'}))
+            .pipe(notify({message: 'all.min.css generated', onLast: true}))
             .pipe(gulp.dest(assets.css));
 
     var print = gulp.src(assets.scss + '/print.scss')
             .pipe(plumber())
             .pipe(sass().on('error', sass.logError))
             .pipe(gulp.dest(assets.css))
-            .pipe(notify({message: 'print.css generated'}))
+            .pipe(notify({message: 'print.css generated', onLast: true}))
             .pipe(cleanCSS())
             .pipe(rename({suffix: '.min'}))
             .pipe(gulp.dest(assets.css))
-            .pipe(notify({message: 'print.min.css generated'}));
+            .pipe(notify({message: 'print.min.css generated', onLast: true}));
 
     return all, print;
 });
@@ -109,15 +109,32 @@ gulp.task('scripts', function () {
             .pipe(sourcemaps.init())
             .pipe(concat('toolkit.js')) //for fabricator
             .pipe(gulp.dest(assets.styleguide_js))
-            .pipe(notify({message: 'toolkit.js generated'}))
-            .pipe(rename('all.js'))
+            .pipe(notify({message: 'toolkit.js generated', onLast: true}))
+            .pipe(rename('scripts.js'))
             .pipe(gulp.dest(assets.js))
             .pipe(rename({suffix: '.min'}))
             .pipe(uglify())
             .pipe(sourcemaps.write('/'))
             .pipe(gulp.dest(assets.js))
-			.pipe(browsersync.reload({stream: true}))
-            .pipe(notify({message: 'Scripts task complete'}));
+            .pipe(browsersync.reload({stream: true}))
+            .pipe(notify({message: 'Scripts task complete', onLast: true}));
+});
+
+//usefull for Drupal projects that already include jquery, list all the scripts to exclude here
+gulp.task('scripts_light', function () {
+    var filterJS = gulpFilter(['**', '!jquery.min.js']);
+    return gulp.src([assets.js + '/src/lib/*.js', assets.js + '/src/*.js']) //manage order
+            .pipe(plumber())
+            .pipe(filterJS)
+            .pipe(sourcemaps.init())
+            .pipe(concat('all.js')) //for fabricator
+            .pipe(gulp.dest(assets.js))
+            .pipe(rename({suffix: '.min'}))
+            .pipe(uglify())
+            .pipe(sourcemaps.write('/'))
+            .pipe(gulp.dest(assets.js))
+            .pipe(browsersync.reload({stream: true}))
+            .pipe(notify({message: 'Scripts light task complete', onLast: true}));
 });
 
 /* Optimise images */
@@ -157,7 +174,7 @@ gulp.task('sprites', function () {
                 .pipe(gulp.dest(assets.img + '/sprite_' + name + '.svg'))
                 .pipe(svg2png())
                 .pipe(gulp.dest(assets.img + '/sprite_' + name + '.png'))
-                .pipe(notify({message: 'Sprite ' + name + ' generated'}));
+                .pipe(notify({message: 'Sprite ' + name + ' generated', onLast: true}));
     });
 });
 
@@ -210,7 +227,7 @@ gulp.task('browsersync-reload', function () {
 // Watch Files For Changes
 gulp.task('watch', ['browser-sync'], function () {
     gulp.watch(assets.scss + '/**/*.scss', ['sass']);
-    gulp.watch(assets.js + '/src/**/*.js', ['scripts']);
+    gulp.watch(assets.js + '/src/**/*.js', ['scripts', 'scripts_light']);
     gulp.watch(assets.img + '/**/*', ['images']);
     gulp.watch(assets.sprites + '/**', ['sprites']);
     gulp.watch([assets.html + '/*.html', assets.inc + '/*.html'], ['fileinclude']);
