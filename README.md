@@ -13,12 +13,13 @@ The gulpfile tasks allow you to:
 - Compress and concatenate SCSS
 - Compress and concatenate JS
 - Generate sourcemaps for each CSS/JS files
-- Optimise images
+- Optimize images
 - Create an icon font based on SVG files
 - Create multiple sprites with SVG and PNG fallback
 - Include HTML parts (like header/footer...)
 - Add [Fabricator](http://fbrctr.github.io/) in order to create styleguide
 - Reload your browser at each code update
+- Check for accessibility issues
 - Create a clean delivery zip of your project
 
 ## Installation
@@ -77,6 +78,14 @@ To install it, you just have to be in the styleguide folder and launch the comma
 Every time you will update CSS/JS in your project, it'll be updated in the styleguide folder (by default in **styleguide/src/assets/toolkit**).  
 Follow the doc for more informations [http://fbrctr.github.io/docs/] (http://fbrctr.github.io/docs/)
 
+### Accessibility check
+Just run the `gulp axe` command. It will report all accessibility issues in your console and in the a11yResult.json file.
+This file will be located in the aXeReports directory.
+
+More doc :
+
+- [https://www.npmjs.com/package/gulp-axe-webdriver](https://www.npmjs.com/package/gulp-axe-webdriver)
+
 ### List of modules used ###
 
 - [https://www.npmjs.com/package/gulp-plumber](https://www.npmjs.com/package/gulp-plumber)
@@ -99,6 +108,7 @@ Follow the doc for more informations [http://fbrctr.github.io/docs/] (http://fbr
 - [https://www.npmjs.com/package/gulp-svg2png](https://www.npmjs.com/package/gulp-svg2png)
 - [https://www.npmjs.com/package/gulp-svg-spritesheet](https://www.npmjs.com/package/gulp-svg-spritesheet)
 - [https://www.npmjs.com/package/gulp-iconfont](https://www.npmjs.com/package/gulp-iconfont)
+- [https://www.npmjs.com/package/gulp-axe-webdriver](https://www.npmjs.com/package/gulp-axe-webdriver)
 
 ## History
 First version
@@ -114,10 +124,16 @@ Update npm version to use nodejs version 6.9.1
 Remove rem breakpoints
 Better a11y on skip links and a11y_hidden class
 
-### Current version ###
+### 1.2.1 ###
 Better a11y on main regions (tabindex)
 Use gulp-sass instead of gulp-compass
 Remove config.rb file-include
+
+### Current version ###
+Modules upgrade
+Remove useless sourcemap file
+Add accessibility check with axe-webdriver
+Remove REM calculation for sprites
 
 ## Credits
 Author: Mylène Chandelier

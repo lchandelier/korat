@@ -1,5 +1,6 @@
 /* plugins */
 var gulp = require('gulp'),
+        axe = require('gulp-axe-webdriver'),
         plumber = require('gulp-plumber'),
         shell = require('gulp-shell'),
         browsersync = require('browser-sync'),
@@ -60,6 +61,7 @@ var urlSync = 'test.local';
  * 6/ styleguide
  * 7/ zip
  * 8/ watch
+ * 9/ accessibility check
  * 
  */
 
@@ -78,7 +80,6 @@ gulp.task('sass', function () {
             .pipe(gulp.dest(assets.styleguide_css))
             .pipe(notify({message: 'toolkit.scss generated'}))
             .pipe(rename('all.css'))
-            .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest(assets.css))
             .pipe(notify({message: 'all.css generated', onLast: true}))
             .pipe(cleanCSS())
@@ -86,8 +87,7 @@ gulp.task('sass', function () {
             .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest(assets.css))
             .pipe(browsersync.reload({stream: true}))
-            .pipe(notify({message: 'all.min.css generated', onLast: true}))
-            .pipe(gulp.dest(assets.css));
+            .pipe(notify({message: 'all.min.css generated', onLast: true}));
 
     var print = gulp.src(assets.scss + '/print.scss')
             .pipe(plumber())
@@ -97,6 +97,7 @@ gulp.task('sass', function () {
             .pipe(cleanCSS())
             .pipe(rename({suffix: '.min'}))
             .pipe(gulp.dest(assets.css))
+            .pipe(browsersync.reload({stream:true}))
             .pipe(notify({message: 'print.min.css generated', onLast: true}));
 
     return all, print;
@@ -231,6 +232,16 @@ gulp.task('watch', ['browser-sync'], function () {
     gulp.watch(assets.img + '/**/*', ['images']);
     gulp.watch(assets.sprites + '/**', ['sprites']);
     gulp.watch([assets.html + '/*.html', assets.inc + '/*.html'], ['fileinclude']);
+});
+
+/* accessibility task */
+gulp.task('axe', function(done) {
+  var options = {
+    saveOutputIn: 'a11yResult.json',
+    browser: 'phantomjs',
+    urls: ['*.html']
+  };
+  return axe(options, done);
 });
 
 

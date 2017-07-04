@@ -1,10 +1,3 @@
-/* useful conversion for breakpoint
-* see http://www.stubbornella.org/content/2013/07/01/easy-peasy-rem-conversion-with-sass/
-*/
-@function calculateRem($size) {
-  $remSize: $size / $base_font_size;
-  @return #{$remSize}rem;
-}
 
 /* rem/px management
 * use only if you need to support IE8
@@ -70,11 +63,11 @@
 */
 
 @mixin respond-to($media) {
-    // mobile max 415
+    // mobile max 540
     @if $media == mobile {
-        @media screen and (max-width: ($break_small) ) { @content; }
+        @media screen and (max-width: ($break_small)-1 ) { @content; }
     }
-    // 416 to 768
+    // 541 to 768
     @else if $media == portrait {
 	   @media screen and (min-width: $break_small) and (max-width: ($break_medium)-1 ) { @content; }
 	}
@@ -140,12 +133,12 @@
 			}
 			// Outputs dimensions of icon in rem
 			@if $type == all or $type == size {
-				width: calculateRem(map-get($iconMap, width));
-				height: calculateRem(map-get($iconMap, height));
+				width: map-get($iconMap, width);
+				height: map-get($iconMap, height);
 			}
 			// Outputs background position in rem
 			@if $type == all or $type == bg {
-				background-position: calculateRem(map-get($iconMap, x)) calculateRem(map-get($iconMap, y));
+				background-position: map-get($iconMap, x) map-get($iconMap, y);
 			}
 		}
 	}
@@ -161,20 +154,18 @@
 		// Shares the backgrounds
 		display: inline-block;
 		background-image: url(map-get($sprite, svgPath));
-		background-size: calculateRem(map-get($sprite, width)) calculateRem(map-get($sprite, height));
+		background-size: map-get($sprite, width) map-get($sprite, height);
 	}
 
 	$iconMap: icon-attr($spriteMap, $icon);
 
-	// Outputs dimensions in rem
 	@if $type == all or $type == size {
-		width: calculateRem(map-get($iconMap, width) + 1);
-		height: calculateRem(map-get($iconMap, height) + 1);
+		width: map-get($iconMap, width);
+		height: map-get($iconMap, height);
 	}
 
-	// Outputs background position in rem
 	@if $type == all or $type == bg {
-		background-position: calculateRem(map-get($iconMap, x)) calculateRem(map-get($iconMap, y));
+		background-position: map-get($iconMap, x) map-get($iconMap, y);
 	}
 
 	// Add ie fallback
