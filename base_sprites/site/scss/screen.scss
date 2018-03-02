@@ -4,20 +4,6 @@
 @import "base/reset";
 @import "base/helpers";
 
-@import "utilities/sprite_global";
-//@import "utilities/sprite_home"; uncomment if needed
-//@import "utilities/sprite_mobile"; uncomment if needed
-
-@font-face {
-    font-family: 'yourFontHere';
-    src: url('font/fontName.eot');
-    src: url('font/fontName.eot?#iefix') format('embedded-opentype'),
-         url('font/fontName.woff2') format('woff2'),
-         url('font/fontName.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 html, body {
     height: 100%;
 }
@@ -30,17 +16,18 @@ html {
 }
 
 body {
+	background: #fff;
     width: 100%;
     overflow-x: hidden;
     color: $main_color;
+    font-size: 1.6rem; //16px
     font-family: arial, sans-serif;
-    //font-size: 1.4rem; // If no need to support IE8. 1.4rem = 14px 
 	-webkit-backface-visibility: hidden;
     -webkit-font-smoothing: antialiased;
-    @include rem(font-size, 1.4rem); // if IE8 fallback needed
 }
 
 .skip_links {
+	position: relative;
     a {
         &:focus, &:active, &:hover {
             width: auto;
@@ -53,6 +40,7 @@ body {
     }
 }
 
+
 strong, b {
   font-weight: bold;
 }
@@ -60,6 +48,7 @@ strong, b {
 em, i {
   font-style: italic;
 }
+
 
 h1 {
  
@@ -76,21 +65,9 @@ h3 {
 h4 {
  
 }
-.test {
-	@include sprite($icons, square);
-}
-/* example of sprite use 
-.class {
-	@include sprite($icons, camera);
-}
 
-.class_two {
-	@include sprite($icons_home, camera);
-}
-*/
-
-@import "patterns/header";
-@import "patterns/menu";
-@import "patterns/breadcrumb";
-@import "patterns/form";
-@import "patterns/footer";
+@import "components/header";
+@import "components/menu";
+@import "components/breadcrumb";
+@import "components/form";
+@import "components/footer";

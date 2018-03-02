@@ -1,25 +1,30 @@
 /* plugins */
-var gulp = require('gulp'),
-        axe = require('gulp-axe-webdriver'),
-        plumber = require('gulp-plumber'),
-        shell = require('gulp-shell'),
-        browsersync = require('browser-sync'),
-        sass = require('gulp-sass'),
+var   axe = require('gulp-axe-webdriver'),
+		browsersync = require('browser-sync'),
+		cache = require('gulp-cache'),
+		changed = require('gulp-changed'),
+		cheerio = require('gulp-cheerio'),
         cleanCSS = require('gulp-clean-css'),
+        clone = require('gulp-clone'),
+        concat = require('gulp-concat'),
+		del	= require('del'),
+        fileinclude = require('gulp-file-include'),
+        gulp = require('gulp'),
+		gulpFilter = require('gulp-filter'),
+		gulpIf = require('gulp-if'),
+		imagemin = require('gulp-imagemin'),
+		merge = require('merge-stream'),
+		notify = require('gulp-notify'),
+        plumber = require('gulp-plumber'),
+		rename = require('gulp-rename'),
+		sass = require('gulp-sass'),
+        shell = require('gulp-shell'),
+        svgSymbols = require('gulp-svg-symbols'),
         sourcemaps = require('gulp-sourcemaps'),
         uglify = require('gulp-uglify'),
-        imagemin = require('gulp-imagemin'),
-        rename = require('gulp-rename'),
-        concat = require('gulp-concat'),
-        notify = require('gulp-notify'),
-        cache = require('gulp-cache'),
-        gulpFilter = require('gulp-filter'),
-        merge = require('merge-stream'),
-        zip = require('gulp-zip'),
-        fileinclude = require('gulp-file-include'),
-        svgo = require('imagemin-svgo'),
-        svg2png = require('gulp-svg2png'),
-        svgspritesheet = require('gulp-svg-spritesheet');
+		webp = require('gulp-webp'),
+        zip = require('gulp-zip');
+        
 
 /* paths */
 
@@ -33,7 +38,7 @@ var assets = {
     js: paths.src + 'js',
     css: paths.src + 'css',
     scss: paths.src + 'scss',
-    util: paths.src + 'scss/utilities',
+    components: paths.src + 'scss/components',
     img: paths.src + 'img',
     sprites: paths.src + 'sprites',
     inc: paths.src + 'inc',
@@ -44,16 +49,12 @@ var assets = {
     styleguide_js: paths.styleguide + 'scripts'
 };
 
-// folders in sprites directory. Allow you to create 3 different sprites
-var folder = new Array('global', 'home', 'mobile');
-
 // url of your project
 var urlSync = 'test.local';
 
-
 /*
  * Tasks
- * 1/ compass
+ * 1/ sass
  * 2/ scripts
  * 3/ images
  * 4/ sprites
@@ -121,7 +122,7 @@ gulp.task('scripts', function () {
             .pipe(notify({message: 'Scripts task complete', onLast: true}));
 });
 
-//usefull for Drupal projects that already include jquery, list all the scripts to exclude here
+//usefull for Drupal/WordPress projects that already include jquery, list all the scripts to exclude here
 gulp.task('scripts_light', function () {
     var filterJS = gulpFilter(['**', '!jquery.min.js']);
     return gulp.src([assets.js + '/src/lib/*.js', assets.js + '/src/*.js']) //manage order
@@ -138,45 +139,72 @@ gulp.task('scripts_light', function () {
             .pipe(notify({message: 'Scripts light task complete', onLast: true}));
 });
 
-/* Optimise images */
+/* Optimize images */
 gulp.task('images', function () {
-    return gulp.src(assets.img + '/**/*')
+    var cloneSink = clone.sink();
+	
+    return gulp.src([assets.img + '/**/*', '!' + assets.img + '/**/*.webp'])
             .pipe(plumber())
-            .pipe(cache(imagemin({optimizationLevel: 3, progressive: true, interlaced: true})))
+			
+            .pipe(changed(assets.img + '/**/*')) //parse only new or updated files
+            .pipe(imagemin([
+                imagemin.gifsicle({interlaced: true}),
+                imagemin.jpegtran({progressive: true}),
+                imagemin.optipng({optimizationLevel: 5}),
+                imagemin.svgo({
+                    plugins: [
+                        {removeViewBox: false},
+                        {cleanupIDs: false}
+                    ]
+                })
+            ]))
+
+			.pipe(cloneSink)   // clone image
+			.pipe(webp())      // convert cloned image to WebP
+            .pipe(cloneSink.tap()) 
             .pipe(gulp.dest(assets.img));
 });
 
 /* sprites management 
- * note : pixelbase option = font-size on body in your CSS file
+ * generate svg file for inline use
  */
 
 gulp.task('sprites', function () {
+	return gulp.src([assets.sprites + '/**/*.svg'])
+        .pipe(plumber())
+        .pipe(cheerio({
+            run: function ($) {
+                $('[fill]').removeAttr('fill');
+            },
+            parserOptions: { xmlMode: true }
+        }))
+        .pipe(svgSymbols(
+            {
+                title: '%f',
+                svgClassname: 'a11y_hidden',
+                fontSize: 10
+            }
+        ))
+        .pipe(gulpIf( /[.]svg$/, gulp.dest(assets.img + '/global')))
+        .pipe(gulpIf( /[.]css$/, gulp.dest(assets.components)))	
+		.pipe(notify({message: 'Sprite generated', onLast: true}));
+});
 
-    folder.forEach(function (name) {
-        gulp.src(assets.sprites + '/' + name + '/*.svg')
-                .pipe(plumber())
-                .pipe(svgspritesheet({
-                    cssPathNoSvg: assets.css_img_path + '/sprite_' + name + '.png',
-                    cssPathSvg: assets.css_img_path + '/sprite_' + name + '.svg',
-                    padding: 10,
-                    positioning: 'diagonal',
-                    templateDest: assets.util + '/_sprite_' + name + '.scss',
-                    templateSrc: assets.tpl + '/sprite-template-' + name + '.tpl',
-                    pixelBase: 14,
-                    units: 'px',
-                    x: 0,
-                    y: 0
-                }))
-                .pipe(svgo({
-                    plugins: [
-                        {removeXMLProcInst: false}
-                    ]
-                })())
-                .pipe(gulp.dest(assets.img + '/sprite_' + name + '.svg'))
-                .pipe(svg2png())
-                .pipe(gulp.dest(assets.img + '/sprite_' + name + '.png'))
-                .pipe(notify({message: 'Sprite ' + name + ' generated', onLast: true}));
-    });
+/* rename generated css file for sprites */
+
+gulp.task('rename-sprites', ['sprites'], function() {
+   return gulp.src([assets.components + '/*.css'])
+    .pipe(plumber())
+    .pipe(rename({
+        basename: '_sprites',
+        extname: '.scss'
+    }))
+    .pipe(gulp.dest(assets.components))
+});
+
+/* delete the useless css file */
+gulp.task('clean-sprites', ['rename-sprites'], function() {    
+    return del([assets.components + '/*.css'], {force: true})
 });
 
 /* include html patterns in main files */
@@ -208,7 +236,7 @@ gulp.task('zipDelivery', function () {
         assets.img + '/**',
         assets.js + '/**'], {base: "."})
         .pipe(plumber())
-        .pipe(zip('delivery' + date + '.zip'))
+        .pipe(zip('delivery-' + date + '.zip'))
         .pipe(gulp.dest(paths.dist))
         .pipe(notify({message: 'Archive generated'}));
 });
@@ -230,7 +258,7 @@ gulp.task('watch', ['browser-sync'], function () {
     gulp.watch(assets.scss + '/**/*.scss', ['sass']);
     gulp.watch(assets.js + '/src/**/*.js', ['scripts', 'scripts_light']);
     gulp.watch(assets.img + '/**/*', ['images']);
-    gulp.watch(assets.sprites + '/**', ['sprites']);
+    gulp.watch(assets.sprites + '/**', ['clean-sprites']);
     gulp.watch([assets.html + '/*.html', assets.inc + '/*.html'], ['fileinclude']);
 });
 
@@ -244,7 +272,7 @@ gulp.task('axe', function(done) {
   return axe(options, done);
 });
 
-
 // Default Task
 gulp.task('default', ['watch']);
+
 gulp.task('delivery', ['zipDelivery']);

@@ -5,17 +5,13 @@ It's called Korat because I'm a crazycat lady and a Korat cat is as small as thi
 
 It uses Gulp and Sass.
 
-You can choose between 2 versions:
-With sprites or with icon font management
-
 The gulpfile tasks allow you to:
 
 - Compress and concatenate SCSS
 - Compress and concatenate JS
 - Generate sourcemaps for each CSS/JS files
-- Optimize images
-- Create an icon font based on SVG files
-- Create multiple sprites with SVG and PNG fallback
+- Optimize images and create Webp format
+- Create an SVG sprite usable inline
 - Include HTML parts (like header/footer...)
 - Add [Fabricator](http://fbrctr.github.io/) in order to create styleguide
 - Reload your browser at each code update
@@ -31,7 +27,7 @@ The gulpfile tasks allow you to:
 6. Enjoy !
 
 ## Usage
-You have to edit the gulpfile to change the urlSync variable (L.51) and the other paths if you need to.
+You have to edit the gulpfile to change the **urlSync variable** and the other paths if you want to.
 
 ### HTML
 The editable HTML (your page template like home.html, contact.html) are in **site/html**  
@@ -43,30 +39,18 @@ You can refer to **site/html/index.html** as an example
 
 More doc here: [https://www.npmjs.com/package/gulp-file-include](https://www.npmjs.com/package/gulp-file-include)
 
-### Icon font
-
-1. Set a font name in gulpfile.js (search var myFont)
-2. Put your SVG icons in the icon_font folder
-3. Run `gulp iconfont` command. The font is generated in **site/css/font**
-4. Call you font in CSS with @font-face.
-
-More doc here: [https://www.npmjs.com/package/gulp-iconfont](https://www.npmjs.com/package/gulp-iconfont)
-
 ### Sprites
-As an example, 3 different locations are available (global, mobile, home). It allows to create a sprite for mobile, one for home and one for header/footer/whatever-repeats-in-all-your-pages.
 
-It's useful to avoid too big sprites.
-
-1. Set locations for sprites in gulpfile (search var folder)
-2. Put your SVG icons **saved in tiny 1.1** in the folder your need
-3. Run `gulp sprites` command (if you're not already use `gulp` command). The sprite files are generated in **site/img** folder
-4. Call you sprite as the example provided in screen.scss.
+1. Put your SVG icons in the "sprites" folder
+2. Run `gulp sprites` command (if you're not already use `gulp` command).
+3. The sprite file is generated in **site/img/global** folder and the CSS is generated in the CSS folder
+4. Call your icon like this: ```<svg role="img" class="unicorn" aria-label="Pink fluffy unicorn dancing on rainbow"><use xlink:href="#unicorn"></use></svg>```
 
 More doc :
 
-- [https://www.npmjs.com/package/gulp-svg2png](https://www.npmjs.com/package/gulp-svg2png)
-- [https://www.npmjs.com/package/imagemin-svgo](https://www.npmjs.com/package/imagemin-svgo)
-- [https://www.npmjs.com/package/gulp-svg-spritesheet](https://www.npmjs.com/package/gulp-svg-spritesheet)
+- [https://www.npmjs.com/package/gulp-svg-symbols](https://www.npmjs.com/package/gulp-svg-symbols)
+- [https://www.npmjs.com/package/gulp-cheerio](https://www.npmjs.com/package/gulp-cheerio)
+- [https://www.npmjs.com/package/gulp-if](https://www.npmjs.com/package/gulp-if)
 
 
 ### Styleguide/Fabricator
@@ -88,27 +72,31 @@ More doc :
 
 ### List of modules used ###
 
-- [https://www.npmjs.com/package/gulp-plumber](https://www.npmjs.com/package/gulp-plumber)
-- [https://www.npmjs.com/package/gulp-sass](https://www.npmjs.com/package/gulp-sass)
-- [https://www.npmjs.com/package/gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css)
-- [https://www.npmjs.com/package/gulp-shell](https://www.npmjs.com/package/gulp-shell)
-- [http://www.browsersync.io/docs/gulp/](http://www.browsersync.io/docs/gulp/)
-- [https://www.npmjs.com/package/gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
-- [https://www.npmjs.com/package/gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)
-- [https://www.npmjs.com/package/gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin)
-- [https://www.npmjs.com/package/gulp-rename](https://www.npmjs.com/package/gulp-rename)
-- [https://www.npmjs.com/package/gulp-concat](https://www.npmjs.com/package/gulp-concat)
-- [https://www.npmjs.com/package/gulp-notify](https://www.npmjs.com/package/gulp-notify)
-- [https://www.npmjs.com/package/gulp-cache](https://www.npmjs.com/package/gulp-cache)
-- [https://www.npmjs.com/package/gulp-filter](https://www.npmjs.com/package/gulp-filter)
-- [https://www.npmjs.com/package/merge-stream](https://www.npmjs.com/package/merge-stream)
-- [https://www.npmjs.com/package/gulp-zip](https://www.npmjs.com/package/gulp-zip)
-- [https://www.npmjs.com/package/gulp-file-include](https://www.npmjs.com/package/gulp-file-include)
-- [https://www.npmjs.com/package/imagemin-svgo](https://www.npmjs.com/package/imagemin-svgo)
-- [https://www.npmjs.com/package/gulp-svg2png](https://www.npmjs.com/package/gulp-svg2png)
-- [https://www.npmjs.com/package/gulp-svg-spritesheet](https://www.npmjs.com/package/gulp-svg-spritesheet)
-- [https://www.npmjs.com/package/gulp-iconfont](https://www.npmjs.com/package/gulp-iconfont)
 - [https://www.npmjs.com/package/gulp-axe-webdriver](https://www.npmjs.com/package/gulp-axe-webdriver)
+- [http://www.browsersync.io/docs/gulp/](http://www.browsersync.io/docs/gulp/)
+- [https://www.npmjs.com/package/gulp-cache](https://www.npmjs.com/package/gulp-cache)
+- [https://www.npmjs.com/package/gulp-changed](https://www.npmjs.com/package/gulp-changed)
+- [https://www.npmjs.com/package/gulp-cheerio](https://www.npmjs.com/package/gulp-cheerio)
+- [https://www.npmjs.com/package/gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css)
+- [https://www.npmjs.com/package/gulp-clone](https://www.npmjs.com/package/gulp-clone)
+- [https://www.npmjs.com/package/gulp-concat](https://www.npmjs.com/package/gulp-concat)
+- [https://www.npmjs.com/package/gulp-file-include](https://www.npmjs.com/package/gulp-file-include)
+- [https://www.npmjs.com/package/gulp-filter](https://www.npmjs.com/package/gulp-filter)
+- [https://www.npmjs.com/package/gulp-iconfont](https://www.npmjs.com/package/gulp-iconfont)
+- [https://www.npmjs.com/package/gulp-if](https://www.npmjs.com/package/gulp-if)
+- [https://www.npmjs.com/package/gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin)
+- [https://www.npmjs.com/package/merge-stream](https://www.npmjs.com/package/merge-stream)
+- [https://www.npmjs.com/package/gulp-notify](https://www.npmjs.com/package/gulp-notify)
+- [https://www.npmjs.com/package/gulp-plumber](https://www.npmjs.com/package/gulp-plumber)
+- [https://www.npmjs.com/package/gulp-rename](https://www.npmjs.com/package/gulp-rename)
+- [https://www.npmjs.com/package/gulp-sass](https://www.npmjs.com/package/gulp-sass)
+- [https://www.npmjs.com/package/gulp-shell](https://www.npmjs.com/package/gulp-shell)
+- [https://www.npmjs.com/package/gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)
+- [https://www.npmjs.com/package/gulp-svg-symbols](https://www.npmjs.com/package/gulp-svg-symbols)
+- [https://www.npmjs.com/package/gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
+- [https://www.npmjs.com/package/gulp-webp](https://www.npmjs.com/package/gulp-webp)
+- [https://www.npmjs.com/package/gulp-zip](https://www.npmjs.com/package/gulp-zip)
+
 
 ## History
 First version
@@ -129,11 +117,26 @@ Better a11y on main regions (tabindex)
 Use gulp-sass instead of gulp-compass
 Remove config.rb file-include
 
-### Current version ###
+### 1.3.0 ###
 Modules upgrade
 Remove useless sourcemap file
 Add accessibility check with axe-webdriver
 Remove REM calculation for sprites
+
+### current version - 2.0.0 ###
+Modules upgrade
+Moved fonts declarations in _setup.scss
+Remove icon-fonts management
+Sprites as inline svg
+Remove rem convertion and sprites mixins
+New media queries system using [sass-mq](https://github.com/sass-mq/sass-mq)
+Add gulp-changed module to optimize only changed or new images
+Add gulp-svg-symbols
+Add gulp-if to choose where to put svg sprite and its css
+Add cheerio to cleanup svg attributes
+Add webp and gulp-clone to convert jpg/png/... to webp
+Update HTML files
+
 
 ## Credits
 Author: Mylène Chandelier

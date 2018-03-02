@@ -1,15 +1,13 @@
-//useful variables for mixins
-$ie_sprite: '.no-svg' !default; // add it in a conditional comment if needed
-$base_font_size: 16px !default;
-
 @import "base/mixins";
 
 // colors
 $main_color: #000;
 $brand_color: #ccc;
 
-// Break points for media queries.
-$break_small: 540px;  
-$break_medium: 768px;
-$break_large: 1024px;
-$break_wide: 1280px;
+@font-face {
+    font-family: 'yourFontHere';
+    src: url('font/fontName.woff2') format('woff2'),
+         url('font/fontName.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
