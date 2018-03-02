@@ -102,40 +102,40 @@ More doc :
 First version
 
 ### 1.1.0 ###
-Add package.json
+- Add package.json
 
 ### 1.1.1 ###
-Modules upgrade
+- Modules upgrade
 
 ### 1.2.0 ###
-Update npm version to use nodejs version 6.9.1
-Remove rem breakpoints
-Better a11y on skip links and a11y_hidden class
+- Update npm version to use nodejs version 6.9.1
+- Remove rem breakpoints
+- Better a11y on skip links and a11y_hidden class
 
 ### 1.2.1 ###
-Better a11y on main regions (tabindex)
-Use gulp-sass instead of gulp-compass
-Remove config.rb file-include
+- Better a11y on main regions (tabindex)
+- Use gulp-sass instead of gulp-compass
+- Remove config.rb file-include
 
 ### 1.3.0 ###
-Modules upgrade
-Remove useless sourcemap file
-Add accessibility check with axe-webdriver
-Remove REM calculation for sprites
+- Modules upgrade
+- Remove useless sourcemap file
+- Add accessibility check with axe-webdriver
+- Remove REM calculation for sprites
 
 ### current version - 2.0.0 ###
-Modules upgrade
-Moved fonts declarations in _setup.scss
-Remove icon-fonts management
-Sprites as inline svg
-Remove rem convertion and sprites mixins
-New media queries system using [sass-mq](https://github.com/sass-mq/sass-mq)
-Add gulp-changed module to optimize only changed or new images
-Add gulp-svg-symbols
-Add gulp-if to choose where to put svg sprite and its css
-Add cheerio to cleanup svg attributes
-Add webp and gulp-clone to convert jpg/png/... to webp
-Update HTML files
+- Modules upgrade
+- Moved fonts declarations in _setup.scss
+- Remove icon-fonts management
+- Sprites as inline svg
+- Remove rem convertion and sprites mixins
+- New media queries system using [sass-mq](https://github.com/sass-mq/sass-mq)
+- Add gulp-changed module to optimize only changed or new images
+- Add gulp-svg-symbols
+- Add gulp-if to choose where to put svg sprite and its css
+- Add cheerio to cleanup svg attributes
+- Add webp and gulp-clone to convert jpg/png/... to webp
+- Update HTML files
 
 
 ## Credits
