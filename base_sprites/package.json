@@ -1,6 +1,6 @@
 {
     "name": "mchandelier-korat-sprites",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "license": "MIT",
     "repository": "https://github.com/mchandelier/korat",
 	"description": "Another front-end starter kit",
@@ -25,7 +25,7 @@
         "gulp-sass": "3.1.0",
         "gulp-shell": "0.6.5",
         "gulp-sourcemaps": "2.6.3",
-        "gulp-svg-symbols": "2.0.2",
+        "gulp-svg-symbols": "3.1.0",
         "gulp-uglify": "3.0.0",
         "gulp-webp": "3.0.0",
         "gulp-zip": "4.1.0",

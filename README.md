@@ -7,16 +7,16 @@ It uses Gulp and Sass.
 
 The gulpfile tasks allow you to:
 
-- Compress and concatenate SCSS
-- Compress and concatenate JS
-- Generate sourcemaps for each CSS/JS files
-- Optimize images and create Webp format
-- Create an SVG sprite usable inline
-- Include HTML parts (like header/footer...)
-- Add [Fabricator](http://fbrctr.github.io/) in order to create styleguide
-- Reload your browser at each code update
-- Check for accessibility issues
-- Create a clean delivery zip of your project
+ * Compress and concatenate SCSS
+ * Compress and concatenate JS
+ * Generate sourcemaps for each CSS/JS files
+ * Optimize images and create Webp format
+ * Create an SVG sprite usable inline
+ * Include HTML parts (like header/footer...)
+ * Add [Fabricator](http://fbrctr.github.io/) in order to create styleguide
+ * Reload your browser at each code update
+ * Check for accessibility issues
+ * Create a clean delivery zip of your project
 
 ## Installation
 1. Install [Python 2.7](https://www.python.org/downloads/release/python-2711/)
@@ -44,13 +44,13 @@ More doc here: [https://www.npmjs.com/package/gulp-file-include](https://www.npm
 1. Put your SVG icons in the "sprites" folder
 2. Run `gulp sprites` command (if you're not already use `gulp` command).
 3. The sprite file is generated in **site/img/global** folder and the CSS is generated in the CSS folder
-4. Call your icon like this: ```<svg role="img" class="unicorn" aria-label="Pink fluffy unicorn dancing on rainbow"><use xlink:href="#unicorn"></use></svg>```
+4. Call your icon like this: ```<svg role="img" focusable="false" class="unicorn" aria-label="Pink fluffy unicorn dancing on rainbow"><use xlink:href="#unicorn"></use></svg>```
 
 More doc :
 
-- [https://www.npmjs.com/package/gulp-svg-symbols](https://www.npmjs.com/package/gulp-svg-symbols)
-- [https://www.npmjs.com/package/gulp-cheerio](https://www.npmjs.com/package/gulp-cheerio)
-- [https://www.npmjs.com/package/gulp-if](https://www.npmjs.com/package/gulp-if)
+ * [https://www.npmjs.com/package/gulp-svg-symbols](https://www.npmjs.com/package/gulp-svg-symbols)
+ * [https://www.npmjs.com/package/gulp-cheerio](https://www.npmjs.com/package/gulp-cheerio)
+ * [https://www.npmjs.com/package/gulp-if](https://www.npmjs.com/package/gulp-if)
 
 
 ### Styleguide/Fabricator
@@ -68,74 +68,78 @@ This file will be located in the aXeReports directory.
 
 More doc :
 
-- [https://www.npmjs.com/package/gulp-axe-webdriver](https://www.npmjs.com/package/gulp-axe-webdriver)
+ * [https://www.npmjs.com/package/gulp-axe-webdriver](https://www.npmjs.com/package/gulp-axe-webdriver)
 
 ### List of modules used ###
 
-- [https://www.npmjs.com/package/gulp-axe-webdriver](https://www.npmjs.com/package/gulp-axe-webdriver)
-- [http://www.browsersync.io/docs/gulp/](http://www.browsersync.io/docs/gulp/)
-- [https://www.npmjs.com/package/gulp-cache](https://www.npmjs.com/package/gulp-cache)
-- [https://www.npmjs.com/package/gulp-changed](https://www.npmjs.com/package/gulp-changed)
-- [https://www.npmjs.com/package/gulp-cheerio](https://www.npmjs.com/package/gulp-cheerio)
-- [https://www.npmjs.com/package/gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css)
-- [https://www.npmjs.com/package/gulp-clone](https://www.npmjs.com/package/gulp-clone)
-- [https://www.npmjs.com/package/gulp-concat](https://www.npmjs.com/package/gulp-concat)
-- [https://www.npmjs.com/package/gulp-file-include](https://www.npmjs.com/package/gulp-file-include)
-- [https://www.npmjs.com/package/gulp-filter](https://www.npmjs.com/package/gulp-filter)
-- [https://www.npmjs.com/package/gulp-iconfont](https://www.npmjs.com/package/gulp-iconfont)
-- [https://www.npmjs.com/package/gulp-if](https://www.npmjs.com/package/gulp-if)
-- [https://www.npmjs.com/package/gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin)
-- [https://www.npmjs.com/package/merge-stream](https://www.npmjs.com/package/merge-stream)
-- [https://www.npmjs.com/package/gulp-notify](https://www.npmjs.com/package/gulp-notify)
-- [https://www.npmjs.com/package/gulp-plumber](https://www.npmjs.com/package/gulp-plumber)
-- [https://www.npmjs.com/package/gulp-rename](https://www.npmjs.com/package/gulp-rename)
-- [https://www.npmjs.com/package/gulp-sass](https://www.npmjs.com/package/gulp-sass)
-- [https://www.npmjs.com/package/gulp-shell](https://www.npmjs.com/package/gulp-shell)
-- [https://www.npmjs.com/package/gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)
-- [https://www.npmjs.com/package/gulp-svg-symbols](https://www.npmjs.com/package/gulp-svg-symbols)
-- [https://www.npmjs.com/package/gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
-- [https://www.npmjs.com/package/gulp-webp](https://www.npmjs.com/package/gulp-webp)
-- [https://www.npmjs.com/package/gulp-zip](https://www.npmjs.com/package/gulp-zip)
+ * [https://www.npmjs.com/package/gulp-axe-webdriver](https://www.npmjs.com/package/gulp-axe-webdriver)
+ * [http://www.browsersync.io/docs/gulp/](http://www.browsersync.io/docs/gulp/)
+ * [https://www.npmjs.com/package/gulp-cache](https://www.npmjs.com/package/gulp-cache)
+ * [https://www.npmjs.com/package/gulp-changed](https://www.npmjs.com/package/gulp-changed)
+ * [https://www.npmjs.com/package/gulp-cheerio](https://www.npmjs.com/package/gulp-cheerio)
+ * [https://www.npmjs.com/package/gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css)
+ * [https://www.npmjs.com/package/gulp-clone](https://www.npmjs.com/package/gulp-clone)
+ * [https://www.npmjs.com/package/gulp-concat](https://www.npmjs.com/package/gulp-concat)
+ * [https://www.npmjs.com/package/gulp-file-include](https://www.npmjs.com/package/gulp-file-include)
+ * [https://www.npmjs.com/package/gulp-filter](https://www.npmjs.com/package/gulp-filter)
+ * [https://www.npmjs.com/package/gulp-iconfont](https://www.npmjs.com/package/gulp-iconfont)
+ * [https://www.npmjs.com/package/gulp-if](https://www.npmjs.com/package/gulp-if)
+ * [https://www.npmjs.com/package/gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin)
+ * [https://www.npmjs.com/package/merge-stream](https://www.npmjs.com/package/merge-stream)
+ * [https://www.npmjs.com/package/gulp-notify](https://www.npmjs.com/package/gulp-notify)
+ * [https://www.npmjs.com/package/gulp-plumber](https://www.npmjs.com/package/gulp-plumber)
+ * [https://www.npmjs.com/package/gulp-rename](https://www.npmjs.com/package/gulp-rename)
+ * [https://www.npmjs.com/package/gulp-sass](https://www.npmjs.com/package/gulp-sass)
+ * [https://www.npmjs.com/package/gulp-shell](https://www.npmjs.com/package/gulp-shell)
+ * [https://www.npmjs.com/package/gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)
+ * [https://www.npmjs.com/package/gulp-svg-symbols](https://www.npmjs.com/package/gulp-svg-symbols)
+ * [https://www.npmjs.com/package/gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
+ * [https://www.npmjs.com/package/gulp-webp](https://www.npmjs.com/package/gulp-webp)
+ * [https://www.npmjs.com/package/gulp-zip](https://www.npmjs.com/package/gulp-zip)
 
 
 ## History
 First version
 
 ### 1.1.0 ###
-- Add package.json
+ * Add package.json
 
 ### 1.1.1 ###
-- Modules upgrade
+ * Modules upgrade
 
 ### 1.2.0 ###
-- Update npm version to use nodejs version 6.9.1
-- Remove rem breakpoints
-- Better a11y on skip links and a11y_hidden class
+ * Update npm version to use nodejs version 6.9.1
+ * Remove rem breakpoints
+ * Better a11y on skip links and a11y_hidden class
 
 ### 1.2.1 ###
-- Better a11y on main regions (tabindex)
-- Use gulp-sass instead of gulp-compass
-- Remove config.rb file-include
+ * Better a11y on main regions (tabindex)
+ * Use gulp-sass instead of gulp-compass
+ * Remove config.rb file-include
 
 ### 1.3.0 ###
-- Modules upgrade
-- Remove useless sourcemap file
-- Add accessibility check with axe-webdriver
-- Remove REM calculation for sprites
+ * Modules upgrade
+ * Remove useless sourcemap file
+ * Add accessibility check with axe-webdriver
+ * Remove REM calculation for sprites
 
-### current version - 2.0.0 ###
-- Modules upgrade
-- Moved fonts declarations in _setup.scss
-- Remove icon-fonts management
-- Sprites as inline svg
-- Remove rem convertion and sprites mixins
-- New media queries system using [sass-mq](https://github.com/sass-mq/sass-mq)
-- Add gulp-changed module to optimize only changed or new images
-- Add gulp-svg-symbols
-- Add gulp-if to choose where to put svg sprite and its css
-- Add cheerio to cleanup svg attributes
-- Add webp and gulp-clone to convert jpg/png/... to webp
-- Update HTML files
+### 2.0.0 ###
+ * Modules upgrade
+ * Moved fonts declarations in _setup.scss
+ * Remove icon-fonts management
+ * Sprites as inline svg
+ * Remove rem convertion and sprites mixins
+ * New media queries system using [sass-mq](https://github.com/sass-mq/sass-mq)
+ * Add gulp-changed module to optimize only changed or new images
+ * Add gulp-svg-symbols
+ * Add gulp-if to choose where to put svg sprite and its css
+ * Add cheerio to cleanup svg attributes
+ * Add webp and gulp-clone to convert jpg/png/... to webp
+ * Update HTML files
+
+### current version  * 2.0.1 ###
+ * gulp-svg-symbols upgrade
+ * add font-size: 1rem; to svg tag in screen.scss, so they have the correct size
 
 
 ## Credits

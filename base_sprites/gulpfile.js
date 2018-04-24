@@ -1,29 +1,29 @@
 /* plugins */
-var   axe = require('gulp-axe-webdriver'),
-		browsersync = require('browser-sync'),
-		cache = require('gulp-cache'),
-		changed = require('gulp-changed'),
-		cheerio = require('gulp-cheerio'),
-        cleanCSS = require('gulp-clean-css'),
-        clone = require('gulp-clone'),
-        concat = require('gulp-concat'),
-		del	= require('del'),
-        fileinclude = require('gulp-file-include'),
-        gulp = require('gulp'),
-		gulpFilter = require('gulp-filter'),
-		gulpIf = require('gulp-if'),
-		imagemin = require('gulp-imagemin'),
-		merge = require('merge-stream'),
-		notify = require('gulp-notify'),
-        plumber = require('gulp-plumber'),
-		rename = require('gulp-rename'),
-		sass = require('gulp-sass'),
-        shell = require('gulp-shell'),
-        svgSymbols = require('gulp-svg-symbols'),
-        sourcemaps = require('gulp-sourcemaps'),
-        uglify = require('gulp-uglify'),
-		webp = require('gulp-webp'),
-        zip = require('gulp-zip');
+var axe = require('gulp-axe-webdriver'),
+	browsersync = require('browser-sync'),
+	cache = require('gulp-cache'),
+	changed = require('gulp-changed'),
+	cheerio = require('gulp-cheerio'),
+	cleanCSS = require('gulp-clean-css'),
+	clone = require('gulp-clone'),
+	concat = require('gulp-concat'),
+	del	= require('del'),
+	fileinclude = require('gulp-file-include'),
+	gulp = require('gulp'),
+	gulpFilter = require('gulp-filter'),
+	gulpIf = require('gulp-if'),
+	imagemin = require('gulp-imagemin'),
+	merge = require('merge-stream'),
+	notify = require('gulp-notify'),
+	plumber = require('gulp-plumber'),
+	rename = require('gulp-rename'),
+	sass = require('gulp-sass'),
+	shell = require('gulp-shell'),
+	svgSymbols = require('gulp-svg-symbols'),
+	sourcemaps = require('gulp-sourcemaps'),
+	uglify = require('gulp-uglify'),
+	webp = require('gulp-webp'),
+	zip = require('gulp-zip');
         
 
 /* paths */
@@ -180,9 +180,8 @@ gulp.task('sprites', function () {
         }))
         .pipe(svgSymbols(
             {
-                title: '%f',
-                svgClassname: 'a11y_hidden',
-                fontSize: 10
+                class: 'a11y_hidden',
+				'aria-hidden':'true'
             }
         ))
         .pipe(gulpIf( /[.]svg$/, gulp.dest(assets.img + '/global')))
