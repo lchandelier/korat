@@ -42,8 +42,8 @@ More doc here: [https://www.npmjs.com/package/gulp-file-include](https://www.npm
 ### Sprites
 
 1. Put your SVG icons in the "sprites" folder
-2. Run `gulp sprites` command (if you're not already use `gulp` command).
-3. The sprite file is generated in **site/img/global** folder and the CSS is generated in the CSS folder
+2. Run `gulp sprites` command.
+3. The sprite file is generated in **site/img/global** folder and the SCSS is generated in the scss/components folder
 4. Call your icon like this: ```<svg role="img" focusable="false" class="unicorn" aria-label="Pink fluffy unicorn dancing on rainbow"><use xlink:href="#unicorn"></use></svg>```
 
 More doc :
@@ -99,7 +99,6 @@ More doc :
 
 
 ## History
-First version
 
 ### 1.1.0 ###
  * Add package.json
@@ -137,15 +136,18 @@ First version
  * Add webp and gulp-clone to convert jpg/png/... to webp
  * Update HTML files
 
-### current version  * 2.0.1 ###
+### 2.0.1 ###
  * gulp-svg-symbols upgrade
  * add font-size: 1rem; to svg tag in screen.scss, so they have the correct size
 
+### current version 2.1.0 ###
+ * Modules upgrade
+ * Update README file
 
 ## Credits
 Author: Mylène Chandelier
 ## License
-Copyright © 2016 Mylène Chandelier <chandelier.mylene@gmail.com>
+Copyright © 2016 Mylène Chandelier <mylene.chandelier@pm.me>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
