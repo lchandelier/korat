@@ -1,0 +1,164 @@
+@charset "UTF-8";
+body:before {
+  background-color: #FCF8E3;
+  border-bottom: 1px solid #FBEED5;
+  border-left: 1px solid #FBEED5;
+  color: #C09853;
+  font: small-caption;
+  padding: 3px 6px;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100; }
+  @media (min-width: 20em) {
+    body:before {
+      content: "mobile ≥ 320px (20em)"; } }
+  @media (min-width: 48em) {
+    body:before {
+      content: "tablet ≥ 768px (48em)"; } }
+  @media (min-width: 61.25em) {
+    body:before {
+      content: "desktop ≥ 980px (61.25em)"; } }
+  @media (min-width: 81.25em) {
+    body:before {
+      content: "wide ≥ 1300px (81.25em)"; } }
+
+@font-face {
+  font-family: 'yourFontHere';
+  src: url("font/fontName.woff2") format("woff2"), url("font/fontName.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.a11y_hidden, .skip_links a {
+  position: absolute;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  padding: 0;
+  margin: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  white-space: nowrap; }
+  .a11y_hidden:focus, .a11y_hidden:active, .skip_links a:focus, .skip_links a:active {
+    clip-path: none;
+    height: auto;
+    overflow: visible;
+    position: static;
+    width: auto;
+    white-space: normal; }
+
+.hidden {
+  display: none; }
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table; }
+
+.clearfix:after {
+  clear: both; }
+
+html, body {
+  height: 100%; }
+
+html {
+  font-size: 62.5%;
+  font-size: calc(1em * 0.625);
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
+
+body {
+  background: #fff;
+  width: 100%;
+  overflow-x: hidden;
+  color: #000;
+  font-size: 1.6rem;
+  font-family: arial, sans-serif;
+  -webkit-backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased; }
+
+.skip_links {
+  position: relative; }
+  .skip_links a:focus, .skip_links a:active, .skip_links a:hover {
+    width: auto;
+    height: auto;
+    clip: auto;
+    overflow: visible;
+    z-index: 99;
+    color: #000; }
+
+strong, b {
+  font-weight: bold; }
+
+em, i {
+  font-style: italic; }
+
+svg {
+  font-size: 1rem; }
+
+input, select {
+  -webkit-appearance: none; }
+
+input ::-webkit-input-placeholder {
+  color: #B2B2B2; }
+
+input :-moz-placeholder {
+  color: #B2B2B2;
+  opacity: 1; }
+
+input ::-moz-placeholder {
+  color: #B2B2B2;
+  opacity: 1; }
+
+input :-ms-input-placeholder {
+  color: #B2B2B2; }

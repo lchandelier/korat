@@ -10,24 +10,21 @@ The gulpfile tasks allow you to:
  * Compress and concatenate SCSS
  * Compress and concatenate JS
  * Generate sourcemaps for each CSS/JS files
- * Optimize images and create Webp format
+ * Optimize images
  * Create an SVG sprite usable inline
  * Include HTML parts (like header/footer...)
- * Add [Fabricator](http://fbrctr.github.io/) in order to create styleguide
  * Reload your browser at each code update
  * Check for accessibility issues
  * Create a clean delivery zip of your project
 
 ## Installation
-1. Install [Python 2.7](https://www.python.org/downloads/release/python-2711/)
-2. Extract this package at the root of your project
-3. Install Gulp globally with `npm install -g gulp` command
-4. Run the `npm install` command to install all required node modules
-5. Run `gulp` command.
-6. Enjoy !
+1. Extract this package at the root of your project
+2. Install Gulp globally with `npm install -g gulp` command
+3. Run the `npm install` command to install all required node modules
+4. Run `gulp` command.
+5. Enjoy !
 
 ## Usage
-You have to edit the gulpfile to change the **urlSync variable** and the other paths if you want to.
 
 ### HTML
 The editable HTML (your page template like home.html, contact.html) are in **site/html**  
@@ -53,15 +50,6 @@ More doc :
  * [https://www.npmjs.com/package/gulp-if](https://www.npmjs.com/package/gulp-if)
 
 
-### Styleguide/Fabricator
-If you are on Windows, you may need to install Python 2.7.
-
-If you want to add a styleguide to your project, just use the `gulp styleguide` command.  
-It will untar Fabricator in the **styleguide** folder.  
-To install it, you just have to be in the styleguide folder and launch the command `npm start`  
-Every time you will update CSS/JS in your project, it'll be updated in the styleguide folder (by default in **styleguide/src/assets/toolkit**).  
-Follow the doc for more informations [http://fbrctr.github.io/docs/] (http://fbrctr.github.io/docs/)
-
 ### Accessibility check
 Just run the `gulp axe` command. It will report all accessibility issues in your console and in the a11yResult.json file.
 This file will be located in the aXeReports directory.
@@ -74,29 +62,21 @@ More doc :
 
  * [https://www.npmjs.com/package/gulp-axe-webdriver](https://www.npmjs.com/package/gulp-axe-webdriver)
  * [http://www.browsersync.io/docs/gulp/](http://www.browsersync.io/docs/gulp/)
- * [https://www.npmjs.com/package/gulp-cache](https://www.npmjs.com/package/gulp-cache)
- * [https://www.npmjs.com/package/gulp-changed](https://www.npmjs.com/package/gulp-changed)
  * [https://www.npmjs.com/package/gulp-cheerio](https://www.npmjs.com/package/gulp-cheerio)
  * [https://www.npmjs.com/package/gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css)
- * [https://www.npmjs.com/package/gulp-clone](https://www.npmjs.com/package/gulp-clone)
  * [https://www.npmjs.com/package/gulp-concat](https://www.npmjs.com/package/gulp-concat)
  * [https://www.npmjs.com/package/gulp-file-include](https://www.npmjs.com/package/gulp-file-include)
  * [https://www.npmjs.com/package/gulp-filter](https://www.npmjs.com/package/gulp-filter)
- * [https://www.npmjs.com/package/gulp-iconfont](https://www.npmjs.com/package/gulp-iconfont)
  * [https://www.npmjs.com/package/gulp-if](https://www.npmjs.com/package/gulp-if)
  * [https://www.npmjs.com/package/gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin)
- * [https://www.npmjs.com/package/merge-stream](https://www.npmjs.com/package/merge-stream)
- * [https://www.npmjs.com/package/gulp-notify](https://www.npmjs.com/package/gulp-notify)
+ * [https://www.npmjs.com/package/gulp-newer](https://www.npmjs.com/package/gulp-newer)
  * [https://www.npmjs.com/package/gulp-plumber](https://www.npmjs.com/package/gulp-plumber)
  * [https://www.npmjs.com/package/gulp-rename](https://www.npmjs.com/package/gulp-rename)
  * [https://www.npmjs.com/package/gulp-sass](https://www.npmjs.com/package/gulp-sass)
- * [https://www.npmjs.com/package/gulp-shell](https://www.npmjs.com/package/gulp-shell)
  * [https://www.npmjs.com/package/gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)
  * [https://www.npmjs.com/package/gulp-svg-symbols](https://www.npmjs.com/package/gulp-svg-symbols)
- * [https://www.npmjs.com/package/gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
- * [https://www.npmjs.com/package/gulp-webp](https://www.npmjs.com/package/gulp-webp)
+ * [https://www.npmjs.com/package/gulp-terser](https://www.npmjs.com/package/gulp-terser)
  * [https://www.npmjs.com/package/gulp-zip](https://www.npmjs.com/package/gulp-zip)
-
 
 ## History
 
@@ -140,14 +120,22 @@ More doc :
  * gulp-svg-symbols upgrade
  * add font-size: 1rem; to svg tag in screen.scss, so they have the correct size
 
-### current version 2.1.0 ###
+### 2.1.0 ###
+ * Modules upgrade
+ * Update README file
+
+### current version 3.0.0 ###
+ * Gulp v4
+ * Remove Fabricator
+ * Replace gulp-uglify by gulp-terser
+ * Replace gulp-changed by gulp-newer
  * Modules upgrade
  * Update README file
 
 ## Credits
-Author: Mylène Chandelier
+Author: Lena Chandelier
 ## License
-Copyright © 2016 Mylène Chandelier <mylene.chandelier@pm.me>
+Copyright © 2016 Lena Chandelier <lena.chandelier@pm.me>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
